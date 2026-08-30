@@ -1,0 +1,39 @@
+[project]
+name = "data-drift-diff"
+version = "0.1.0"
+description = "Zero-Config Data Drift Diff - Detect silent schema/distribution drift with local SQLite snapshots"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = [
+    "ydata-profiling>=4.9.0,<5",
+    "pandas>=2.0.0",
+    "jinja2>=3.1.0",
+    "scipy>=1.11.0",
+    "numpy>=1.24.0",
+    "setuptools<80",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+drift-diff = "drift_diff.cli:main"
+
+[build-system]
+requires = ["setuptools>=68.0,<80", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["drift_diff*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
